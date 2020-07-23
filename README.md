@@ -5,7 +5,7 @@ This repo is part of the [Traefik Training course](https://training.56k.cloud/tr
 
 Welcome to [56K.Cloud](https://www.56k.cloud) Training & Labs. This repo contains [Traefik](https://containo.us/traefik/) course resources authored both by the respective companies or organizations, and by members of the community. We welcome contributions and want to grow the repo.
 
-#### Resources:
+#### Traefin Traing Course Resources:
 * [Traefik Training](Traefik/README.md)
 
 
