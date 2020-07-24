@@ -1,13 +1,13 @@
 # 56K.Cloud Traefik Training Course Resources
 
-<img src="./img/56k-logo.svg" alt="56K.Cloud Logo" width="150" height="99"> <img src="./img/traefik_logo.png" alt="Traefik Logo" height="50" width="150"> 
+<img src="./img/Traefik_training.png" alt="Traefik Logo" height="100"> 
 
 Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo contains [Traefik](https://containo.us/traefik/) course resources authored both by the respective companies or organizations, and by members of the community. We welcome contributions and want to grow the repo.
 
 ## Traefik Training Course:
 
-## 1. Traefik Overview
-* [Traefik Hello World](https://www.katacoda.com/courses/docker/playground)
+## 1. Getting Started with Traefik
+* [Traefik Hello World](./01-Traefik-Overview/../Traefik/01-Traefik-Overview/traefik_overview.md)
 
 ## 2. Getting Started with the Labs & Traefik 
 * [Run Traefik](https://katacoda.com/courses/docker/deploying-first-container)
