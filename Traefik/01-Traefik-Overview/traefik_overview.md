@@ -10,6 +10,46 @@
 4. Review the logs output `docker-compose logs`
 
 ##  Connect a new service to Traefik
-1. In the same directory is also the `whoami`service in the 
-2. Launch the `whoami` service using `docker-compose` --> `docker-compose -f whoami.yml up -d`
-3. Open a browser tab and paste `whoami.docker.localhost` 
+1. Copy the below whoami service code into the `docker-compose.yml`. Review the `whoami.yml` file for the complete solution.
+
+```yaml
+whoami:
+     # A container that exposes an API to show its IP address
+     image: containous/whoami
+     # We set a label to tell Traefik to assign a hostname to the new service
+     labels:
+       - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+```
+
+2. Run `docker-compose up -d whoami`
+3. Open a browser tab and paste `whoami.docker.localhost`  or from a terminal window `curl -H Host:whoami.docker.localhost http://127.0.0.1` and you should see the below results but with your IP addresses.
+
+```yml
+Hostname: 931789a57923
+IP: 127.0.0.1
+IP: 172.20.0.3
+RemoteAddr: 172.20.0.2:46648
+GET / HTTP/1.1
+Host: whoami.docker.localhost
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Cache-Control: max-age=0
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+X-Forwarded-For: 172.20.0.1
+X-Forwarded-Host: whoami.docker.localhost
+X-Forwarded-Port: 80
+X-Forwarded-Proto: http
+X-Forwarded-Server: 07d5bffe1678
+X-Real-Ip: 172.20.0.1
+
+```
+
+##  Scale the Whoami service
+1. Let's scale the `whoami` service to 2x instances `docker-compose scale whoami=2`
+2. 3. Open a browser tab and paste `whoami.docker.localhost`  or from a terminal window `curl -H Host:whoami.docker.localhost http://127.0.0.1` and you should see the 3rd IP address update based on which service is responding.
