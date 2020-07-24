@@ -1,6 +1,6 @@
 # Getting Started with Traefik
 
-<img src="../../img/Traefik_training.png" alt="Traefik Logo" height="250"> 
+<img src="../../img/Traefik_training.png" alt="Traefik Logo" height="350"> 
 
 
 ## Starting Traefik for the first time
@@ -10,4 +10,6 @@
 4. Review the logs output `docker-compose logs`
 
 ##  Connect a new service to Traefik
-1. 
+1. In the same directory is also the `whoami`service in the 
+2. Launch the `whoami` service using `docker-compose` --> `docker-compose -f whoami.yml up -d`
+3. Open a browser tab and paste `whoami.docker.localhost` 
