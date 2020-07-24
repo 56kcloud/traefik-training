@@ -1,6 +1,6 @@
 # Getting Started with Traefik
 
-<img src="../../img/Traefik_training.png" alt="Traefik Logo" height="100"> 
+<img src="../../img/Traefik_training.png" alt="Traefik Logo" height="250"> 
 
 
 ## Starting Traefik for the first time
@@ -9,5 +9,5 @@
 3. From the `01-Traefik-Overview` directory execute this command -> `docker-compose up -d`
 4. Review the logs output `docker-compose logs`
 
-##  Start a new service
+##  Connect a new service to Traefik
 1. 
