@@ -17,10 +17,10 @@ services:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
 
-# # Add the whoami service
-  # whoami:
-  #    # A container that exposes an API to show its IP address
-  #    image: containous/whoami
-  #    # We set a label to tell Traefik to assign a hostname to the new service
-  #    labels:
-  #      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+# Add the whoami service
+  whoami:
+     # A container that exposes an API to show its IP address
+     image: containous/whoami
+     # We set a label to tell Traefik to assign a hostname to the new service
+     labels:
+       - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
