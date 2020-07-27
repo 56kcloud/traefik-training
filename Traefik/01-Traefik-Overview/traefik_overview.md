@@ -50,6 +50,6 @@ X-Real-Ip: 172.20.0.1
 
 ```
 
-##  Scale the Whoami service
-1. Let's scale the `whoami` service to 2x instances `docker-compose scale whoami=2`
+##  Scale the Whoami service to 3x
+1. Let's scale the `whoami` service to 3x instances `docker-compose scale whoami=2`
 2. Open a browser tab and paste `whoami.docker.localhost`  or from a terminal window `curl -H Host:whoami.docker.localhost http://127.0.0.1` and you should see the 3rd IP address update based on which service is responding.
