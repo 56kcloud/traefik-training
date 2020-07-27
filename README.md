@@ -7,7 +7,7 @@ Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo
 ## Traefik Training Course
 
 ## 1. Getting Started with Traefik
-* [Getting Started with Traefik](./01-Traefik-Overview/../Traefik/01-Traefik-Getting-Started/traefik_overview.md)
+* [Getting Started with Traefik](./01-Traefik-Overview/../Traefik/01-Traefik-Overview/traefik_overview.md)
 
 ## 2. Getting Started with the Labs & Traefik 
 * [Run Traefik](https://katacoda.com/courses/docker/deploying-first-container)
