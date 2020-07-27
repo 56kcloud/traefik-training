@@ -56,6 +56,6 @@ X-Real-Ip: 172.20.0.1
 3. Open a browser tab and paste `whoami.docker.localhost`  or from a terminal window `curl -H Host:whoami.docker.localhost http://127.0.0.1` and you should see the 3rd IP address update based on which service is responding.
 
 ##  4. Get to know the Traefik Dashboard
-1. Open a browser tab and type: `0.0.0.0:8080` to open the Traefik Dashboard
+1. Open a browser tab and type or click: http://0.0.0.0:8080 to open the Traefik Dashboard
 
 
