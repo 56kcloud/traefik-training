@@ -5,7 +5,7 @@
 
 ## Static Configuration using File configuration
 1. Open you Terminal window and change to the `02-Traefik-Overview` folder
-2. Open the `docker-compose.file.yml` file in your favorite editor and review how Docker starts Traefik
+2. Open the `docker-compose.file.yml` file in your favorite editor and review how Docker starts Traefik using the file configuration
 3. From the `02-Traefik-Overview` directory execute this command -> `docker-compose -f docker-compose.file.yml up -d`
 4. Review the logs output `docker-compose logs`
 5. Stop and clean-up `docker-compose stop`
@@ -39,7 +39,7 @@ log:
 
 ## Static Configuration using CLI configuration
 1. Open you Terminal window and change to the `02-Traefik-Overview` folder
-2. Open the `docker-compose.cli.yml` file in your favorite editor and review how Docker starts Traefik
+2. Open the `docker-compose.cli.yml` file in your favorite editor and review how Docker starts Traefik using the CLI configuration
 3. From the `02-Traefik-Overview` directory execute this command -> `docker-compose -f docker-compose.cli.yml up -d`
 4. Review the logs output `docker-compose logs`
 5. Stop and clean-up `docker-compose stop`
@@ -62,7 +62,7 @@ services:
 
 ## Static Configuration using Environment variables configuration
 1. Open you Terminal window and change to the `02-Traefik-Overview` folder
-2. Open the `docker-compose.file.yml` file in your favorite editor and review how Docker starts Traefik
+2. Open the `docker-compose.file.yml` file in your favorite editor and review how Docker starts Traefik using the Environment configuration
 3. From the `02-Traefik-Overview` directory execute this command -> `docker-compose -f docker-compose.file.yml up -d`
 4. Review the logs output `docker-compose logs`
 5. Stop and clean-up `docker-compose stop`
