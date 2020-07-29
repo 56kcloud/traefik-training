@@ -10,7 +10,7 @@ Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo
 * [Getting Started with Traefik](./01-Traefik-Overview/traefik_overview.md)
 
 ## 2. Configure Traefik 
-* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
+* [Traefik Static & Dynamic Configuration](.02-Configure-Traefik/traefik-configuration.md)
 
 ## 3. Traefik Routing & Loadbalancing
 * [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
