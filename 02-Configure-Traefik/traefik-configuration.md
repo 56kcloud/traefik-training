@@ -3,7 +3,7 @@
 <img src="../img/Traefik_training.png" alt="Traefik Logo" height="350"> 
 
 
-## Static Configuration using File configuration
+## 1. Static Configuration using File configuration
 1. Open you Terminal window and change to the `02-Traefik-Overview` folder
 2. Open the `docker-compose.file.yml` file in your favorite editor and review how Docker starts Traefik using the file configuration
 3. From the `02-Traefik-Overview` directory execute this command -> `docker-compose -f docker-compose.file.yml up -d`
@@ -37,7 +37,7 @@ log:
 ```
 
 
-## Static Configuration using CLI configuration
+## 2. Static Configuration using CLI configuration
 1. Open you Terminal window and change to the `02-Traefik-Overview` folder
 2. Open the `docker-compose.cli.yml` file in your favorite editor and review how Docker starts Traefik using the CLI configuration
 3. From the `02-Traefik-Overview` directory execute this command -> `docker-compose -f docker-compose.cli.yml up -d`
@@ -60,7 +60,7 @@ services:
       - "--log.level=INFO"
 ```
 
-## Static Configuration using Environment variables configuration
+## 3. Static Configuration using Environment variables configuration
 1. Open you Terminal window and change to the `02-Traefik-Overview` folder
 2. Open the `docker-compose.file.yml` file in your favorite editor and review how Docker starts Traefik using the Environment configuration
 3. From the `02-Traefik-Overview` directory execute this command -> `docker-compose -f docker-compose.file.yml up -d`
