@@ -1,6 +1,6 @@
 # Getting Started with Traefik
 
-<img src="../../img/Traefik_training.png" alt="Traefik Logo" height="350"> 
+<img src="../img/Traefik_training.png" alt="Traefik Logo" height="350"> 
 
 
 ## Starting Traefik for the first time
