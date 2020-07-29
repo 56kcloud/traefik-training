@@ -10,40 +10,33 @@ Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo
 * [Getting Started with Traefik](./01-Traefik-Overview/traefik_overview.md)
 
 ## 2. Configure Traefik 
-* [Traefik Static & Dynamic Configuration](./01-Traefik-Overview/traefik_configuration.md)
+* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
 
-## 3. Configure Traefik
-* [Building Container Images](https://www.katacoda.com/courses/docker/2)
-* [Dockerizing Node.js](https://www.katacoda.com/courses/docker/3)
-* [Docker & DevOps](chapters/devops.md)
+## 3. Traefik Routing & Loadbalancing
+* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
 
-## 4. Traefik Routing & Loadbalancing
-* [Creating Networks Between Containers using Links](https://www.katacoda.com/courses/docker/5)
-* [Creating Networks Between Containers using Networks](https://www.katacoda.com/courses/docker/networking-intro)
+## 4. TTPS / TLS / Let's Encrypt
+* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
 
-## 5. HTTPS / TLS / Let's Encrypt
-* [Persisting Data Using Volume](https://www.katacoda.com/courses/docker/persisting-data-using-volumes)
-* [Manage Container Log Files](https://www.katacoda.com/courses/docker/8)
+## 5. Traefik Middlewares
+* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
 
-## 6. Traefik Middlewares
-* [Orchestration using Docker Compose](https://www.katacoda.com/courses/docker/11)
-* [Build and Deploy a Monitoring Stack](https://github.com/56kcloud/Training/blob/master/DockerCon/readme.md)
+## 6. Traefik Observability
+* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
 
-## 7. Traefik Observability
-* [Getting Started with Swarm mode](https://www.katacoda.com/courses/docker/getting-started-with-swarm-mode)
+## 7. Traefik Advanced Tips
+* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
 
 ## 8. Traefik Operations
-* [Graphing Docker Metrics with Prometheus](https://www.katacoda.com/courses/docker-orchestration/docker-metrics)
+* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
 
-## 9. Traefik Advanced Tips
-* [Graphing Docker Metrics with Prometheus](https://www.katacoda.com/courses/docker-orchestration/docker-metrics)
+## 9. Traefik Resources
+* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
 
-## 10. Traefik Resources
-* [Graphing Docker Metrics with Prometheus](https://www.katacoda.com/courses/docker-orchestration/docker-metrics)
 
 #### Contributing
 
-We want to see this repo grow, so if you have a tutorial to submit, or contributions to existing tutorials, please see this guide:
+If you see an error or something needs updating please contribute back to the repo
 
 [Guide to submitting your own tutorial](contribute.md)
 
