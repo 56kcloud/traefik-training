@@ -3,13 +3,13 @@
 <img src="../../img/Traefik_training.png" alt="Traefik Logo" height="350"> 
 
 
-## Starting Traefik for the first time
+## 1. Starting Traefik for the first time
 1. Open you Terminal window and change to the `01-Traefik-Overview` folder
 2. Open the `docker-compose.yml` file in your favorite editor and review how Docker starts Traefik
 3. From the `01-Traefik-Overview` directory execute this command -> `docker-compose up -d`
 4. Review the logs output `docker-compose logs`
 
-##  Connect a new service to Traefik
+##  2. Connect a new service to Traefik
 1. Uncomment the below whoami section inside the `docker-compose.yml`. Review the `whoami.yml` file for the complete solution.
 
 ```yaml
@@ -50,7 +50,12 @@ X-Real-Ip: 172.20.0.1
 
 ```
 
-##  Scale the Whoami service to 3x
+##  3. Scale the Whoami service to 3x
 1. Open you Terminal window and change to the `01-Traefik-Overview` folder
 2. Let's scale the `whoami` service to 3x instances by typing `docker-compose scale whoami=3`
 3. Open a browser tab and paste `whoami.docker.localhost`  or from a terminal window `curl -H Host:whoami.docker.localhost http://127.0.0.1` and you should see the 3rd IP address update based on which service is responding.
+
+##  4. Get to know the Traefik Dashboard
+1. Open a browser tab and type or click: http://0.0.0.0:8080 to open the Traefik Dashboard
+
+
