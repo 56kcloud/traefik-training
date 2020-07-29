@@ -7,7 +7,6 @@ services:
     # Enables the Traefik Dashboard and tells Traefik to listen to docker
     # --providers tell Traefik to connect to the Docker provider
     # enable --log.level=INFO so we can see what Traefik is doing in the log files
-    command: --api.insecure=true --providers.docker --log.level=INFO
     ports:
       # Exposes port 80 for incomming web requests
       - "80:80"
@@ -16,6 +15,7 @@ services:
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/etc/traefik/traefik.yml
 
 # Add the whoami service
   whoami:

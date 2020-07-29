@@ -1,56 +1,83 @@
-# Getting Started with Traefik
+# Configure Traefik
 
 <img src="../img/Traefik_training.png" alt="Traefik Logo" height="350"> 
 
 
-## Starting Traefik for the first time
-1. Open you Terminal window and change to the `01-Traefik-Overview` folder
-2. Open the `docker-compose.yml` file in your favorite editor and review how Docker starts Traefik
-3. From the `01-Traefik-Overview` directory execute this command -> `docker-compose up -d`
+## Static Configuration using File configuration
+1. Open you Terminal window and change to the `02-Traefik-Overview` folder
+2. Open the `docker-compose.file.yml` file in your favorite editor and review how Docker starts Traefik
+3. From the `02-Traefik-Overview` directory execute this command -> `docker-compose -f docker-compose.file.yml up -d`
 4. Review the logs output `docker-compose logs`
+5. Stop and clean-up `docker-compose stop`
 
-##  Connect a new service to Traefik
-1. Uncomment the below whoami section inside the `docker-compose.yml`. Review the `whoami.yml` file for the complete solution.
+### File static config code snippet
 
 ```yaml
-whoami:
-     # A container that exposes an API to show its IP address
-     image: containous/whoami
-     # We set a label to tell Traefik to assign a hostname to the new service
-     labels:
-       - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+################################################################
+# API and dashboard configuration
+################################################################
+api:
+  # Dashboard
+  #
+  #
+  dashboard: true
+################################################################
+# Docker configuration backend
+################################################################
+providers:
+  docker: 
+    watch: false
+    exposedByDefault: false
+    swarmMode: true
+################################################################
+# Traefik Logging
+################################################################
+log:
+  level: INFO
 ```
 
-2. Run `docker-compose up -d whoami`
-3. Open a browser tab and paste `whoami.docker.localhost`  or from a terminal window `curl -H Host:whoami.docker.localhost http://127.0.0.1` and you should see the below results but with your IP addresses.
+
+## Static Configuration using CLI configuration
+1. Open you Terminal window and change to the `02-Traefik-Overview` folder
+2. Open the `docker-compose.cli.yml` file in your favorite editor and review how Docker starts Traefik
+3. From the `02-Traefik-Overview` directory execute this command -> `docker-compose -f docker-compose.cli.yml up -d`
+4. Review the logs output `docker-compose logs`
+5. Stop and clean-up `docker-compose stop`
+
+### CLI static config code snippet
 
 ```yml
-Hostname: 931789a57923
-IP: 127.0.0.1
-IP: 172.20.0.3
-RemoteAddr: 172.20.0.2:46648
-GET / HTTP/1.1
-Host: whoami.docker.localhost
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Cache-Control: max-age=0
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-Upgrade-Insecure-Requests: 1
-X-Forwarded-For: 172.20.0.1
-X-Forwarded-Host: whoami.docker.localhost
-X-Forwarded-Port: 80
-X-Forwarded-Proto: http
-X-Forwarded-Server: 07d5bffe1678
-X-Real-Ip: 172.20.0.1
-
+services:
+  traefik:
+    # The latest official supported Traefik docker image
+    image: traefik:v2.3
+    # Enables the Traefik Dashboard and tells Traefik to listen to docker
+    # --providers tell Traefik to connect to the Docker provider
+    # enable --log.level=INFO so we can see what Traefik is doing in the log files
+    command: 
+      - "--api.insecure=true"
+      - "--providers.docker" 
+      - "--log.level=INFO"
 ```
 
-##  Scale the Whoami service to 3x
-1. Open you Terminal window and change to the `01-Traefik-Overview` folder
-2. Let's scale the `whoami` service to 3x instances by typing `docker-compose scale whoami=3`
-3. Open a browser tab and paste `whoami.docker.localhost`  or from a terminal window `curl -H Host:whoami.docker.localhost http://127.0.0.1` and you should see the 3rd IP address update based on which service is responding.
+## Static Configuration using Environment variables configuration
+1. Open you Terminal window and change to the `02-Traefik-Overview` folder
+2. Open the `docker-compose.file.yml` file in your favorite editor and review how Docker starts Traefik
+3. From the `02-Traefik-Overview` directory execute this command -> `docker-compose -f docker-compose.file.yml up -d`
+4. Review the logs output `docker-compose logs`
+5. Stop and clean-up `docker-compose stop`
+
+### Environment variables static config code snippet
+```yml
+services:
+  traefik:
+    # The latest official supported Traefik docker image
+    image: traefik:v2.3
+    # Enables the Traefik Dashboard and tells Traefik to listen to docker
+    # --providers tell Traefik to connect to the Docker provider
+    # enable --log.level=INFO so we can see what Traefik is doing in the log files
+    environment:
+      - TRAEFIK_API_INSECURE=true
+      - TRAEFIK_PROVIDERS_DOCKER=true
+      - TRAEFIK_LOG_LEVEL=INFO
+```
