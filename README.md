@@ -13,25 +13,25 @@ Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo
 * [Traefik Static & Dynamic Configuration](./02-Configure-Traefik/traefik-configuration.md)
 
 ## 3. Traefik Routing & Loadbalancing
-* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
+* [Traefik Routing & Loadbalancing](.02-Traefik-Overview/traefik_configuration.md)
 
 ## 4. TTPS / TLS / Let's Encrypt
 * [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
 
 ## 5. Traefik Middlewares
-* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
+* [Traefik Middlewares](.02-Traefik-Overview/traefik_configuration.md)
 
 ## 6. Traefik Observability
-* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
+* [Traefik Observability](.02-Traefik-Overview/traefik_configuration.md)
 
-## 7. Traefik Advanced Tips
-* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
+## 7. Traefik Operations
+* [Traefik Operations](.02-Traefik-Overview/traefik_configuration.md)
 
-## 8. Traefik Operations
-* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
+## 8. Traefik Advanced Tips
+* [Traefik Advanced Tips](.02-Traefik-Overview/traefik_configuration.md)
 
 ## 9. Traefik Resources
-* [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
+* [Traefik Resources](.02-Traefik-Overview/traefik_configuration.md)
 
 
 #### Contributing
