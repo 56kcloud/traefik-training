@@ -80,3 +80,9 @@ services:
       - TRAEFIK_PROVIDERS_DOCKER=true
       - TRAEFIK_LOG_LEVEL=INFO
 ```
+
+# 4. Static Configuration Entrypoint Lab
+1. Open the `traefik-configuration.yml` file in your favorite editor and review how Entrypoints are used.
+2. From the `02-Configure-Traefik` directory execute this command -> `docker-compose -f docker-compose.configuration.yml up -d`
+3. Review the logs output `docker-compose -f docker-compose..yml logs`
+4. Stop and clean-up `docker-compose -f docker-compose.env.yml stop`
