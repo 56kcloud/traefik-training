@@ -1,0 +1,49 @@
+################################################################
+# API and dashboard configuration
+################################################################
+api:
+  # Dashboard
+  #
+  #
+  dashboard: true
+################################################################
+# Docker configuration backend
+################################################################
+providers:
+  docker: 
+    watch: false
+    exposedByDefault: false
+    swarmMode: true
+################################################################
+# Traefik Logging
+################################################################
+log:
+  level: INFO
+
+################################################################
+# Entrypoint
+################################################################
+entryPoints:
+  web:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+
+  websecure:
+    address: :443
+    http:
+      tls:
+        options: foobar
+        certResolver: leresolver
+        domains:
+          - main: example.com
+            sans:
+              - foo.example.com
+              - bar.example.com
+          - main: test.com
+            sans:
+              - foo.test.com
+              - bar.test.com
