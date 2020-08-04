@@ -84,5 +84,7 @@ services:
 ### 4. Static Configuration Entrypoint Lab
 1. Open the `traefik-configuration.yml` file in your favorite editor and review how Entrypoints are created.
 2. From the `02-Configure-Traefik` directory execute this command -> `docker-compose -f docker-compose.configuration.yml up -d`
-3. Open the Traefik Dashboard and review how the **Entrypoints** are displayed in the Dashboard http://0.0.0.0
-4. Stop and clean-up `docker-compose -f docker-compose.configuration.yml stop`
+3. Open the Traefik Dashboard [http://0.0.0.0](http://0.0.0.0) and review how the test service `catapp` is configured with **Entrypoints**.
+4. Review the `catapp@docker` router and `catapp@docker` service in the Traefik Dashboard
+5. Test the newly deployed `catapp` service [http://catapp.localhost/](http://catapp.localhost/)
+6. Stop and clean-up `docker-compose -f docker-compose.configuration.yml stop`
