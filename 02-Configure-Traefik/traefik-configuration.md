@@ -82,9 +82,11 @@ services:
 ```
 
 ### 4. Static Configuration Entrypoint Lab
+In this section, we will start using Docker Swarm. Ensure you have followed the Prerequisites from the Lab Setup. This can be found in the Getting Started Section of the course if you need to revisit. If you have any issues please add a comment in the course.
+
 1. Open the `traefik-configuration.yml` file in your favorite editor and review how Entrypoints are created.
-2. From the `02-Configure-Traefik` directory execute this command -> `docker-compose -f docker-compose.configuration.yml up -d`
+2. From the `02-Configure-Traefik` directory execute this command -> `docker stack deploy -c docker-compose.configuration.yml catapp`
 3. Open the Traefik Dashboard [http://0.0.0.0](http://0.0.0.0) and review how the test service `catapp` is configured with **Entrypoints**.
 4. Review the `catapp@docker` router and `catapp@docker` service in the Traefik Dashboard
 5. Test the newly deployed `catapp` service [http://catapp.localhost/](http://catapp.localhost/)
-6. Stop and clean-up `docker-compose -f docker-compose.configuration.yml stop`
+6. Stop and clean-up `docker stack rm catapp`
