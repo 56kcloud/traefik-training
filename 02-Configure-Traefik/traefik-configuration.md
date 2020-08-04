@@ -81,8 +81,8 @@ services:
       - TRAEFIK_LOG_LEVEL=INFO
 ```
 
-# 4. Static Configuration Entrypoint Lab
-1. Open the `traefik-configuration.yml` file in your favorite editor and review how Entrypoints are used.
+### 4. Static Configuration Entrypoint Lab
+1. Open the `traefik-configuration.yml` file in your favorite editor and review how Entrypoints are created.
 2. From the `02-Configure-Traefik` directory execute this command -> `docker-compose -f docker-compose.configuration.yml up -d`
-3. Review the logs output `docker-compose -f docker-compose..yml logs`
-4. Stop and clean-up `docker-compose -f docker-compose.env.yml stop`
+3. Open the Traefik Dashboard and review how the **Entrypoints** are displayed in the Dashboard http://0.0.0.0
+4. Stop and clean-up `docker-compose -f docker-compose.configuration.yml stop`
