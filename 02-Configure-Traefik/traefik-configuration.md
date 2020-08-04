@@ -81,7 +81,7 @@ services:
       - TRAEFIK_LOG_LEVEL=INFO
 ```
 
-### 4. Static Configuration Entrypoint Lab
+## 4. Static Configuration Entrypoint Lab
 In this section, we will start using Docker Swarm. Ensure you have followed the Prerequisites from the Lab Setup. This can be found in the Getting Started Section of the course if you need to revisit. If you have any issues please add a comment in the course.
 
 1. Open the `traefik-configuration.yml` file in your favorite editor and review how Entrypoints are created.
