@@ -15,15 +15,16 @@ services:
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik-entrypoints.yml:/etc/traefik/traefik.yml
+      - ./traefik.yml:/etc/traefik/traefik.yml
 
-# Add the whoami service
+# Add the catapp service
   catapp:
-     # A container that exposes an API to show its IP address
+     # A Random Cat GIF generator application
      image: mikesir87/cats:1.0
      # We set a label to tell Traefik to assign a hostname to the new service
      labels:
       - "traefik.enable=true"
       - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
       - "traefik.http.routers.catapp.entrypoints=web"
+      - "traefik.http.routers.catapp.service=catapp"
       - "traefik.http.services.catapp.loadbalancer.server.port=5000"

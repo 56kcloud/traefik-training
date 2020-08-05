@@ -6,16 +6,24 @@ api:
   #
   #
   dashboard: true
+  insecure: true
 ################################################################
 # Docker configuration backend
 ################################################################
 providers:
-  docker: 
-    watch: true
+  docker:
     exposedByDefault: false
-    swarmMode: true
 ################################################################
 # Traefik Logging
 ################################################################
 log:
-  level: INFO
+  level: DEBUG
+
+################################################################
+# Entrypoint
+################################################################
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
