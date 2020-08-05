@@ -13,7 +13,7 @@ Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo
 * [Traefik Static & Dynamic Configuration](./02-Configure-Traefik/traefik-configuration.md)
 
 ## 3. Traefik Routing & Loadbalancing
-* [Traefik Routing & Loadbalancing](.03-Routers-and-Services/traefik-routers-and-services.md)
+* [Traefik Routing & Loadbalancing](./03-Routers-and-Services/traefik-routers-and-services.md)
 
 ## 4. TTPS / TLS / Let's Encrypt
 * [Traefik Static & Dynamic Configuration](.02-Traefik-Overview/traefik_configuration.md)
