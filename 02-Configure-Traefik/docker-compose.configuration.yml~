@@ -17,9 +17,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik-entrypoints.yml:/etc/traefik/traefik.yml
 
-# Add the catapp service
+# Add the whoami service
   catapp:
-     # A Random Cat GIF generator application
+     # A container that exposes an API to show its IP address
      image: mikesir87/cats:1.0
      # We set a label to tell Traefik to assign a hostname to the new service
      labels:
