@@ -20,9 +20,3 @@ services:
 # Add the catapp service
   catapp:
      image: mikesir87/cats:1.0
-     labels:
-       - "traefik.enable=true"
-       - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
-       - "traefik.http.routers.catapp.entrypoints=web"
-       - "traefik.http.routers.catapp.service=catapp"
-       - "traefik.http.services.catapp.loadbalancer.server.port=5000"

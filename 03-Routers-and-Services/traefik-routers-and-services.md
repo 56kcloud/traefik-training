@@ -1,4 +1,4 @@
-# Traefik Routers & Services
+# Traefik Routers & Services Lab
 
 <img src="../img/Traefik_training.png" alt="Traefik Logo" height="350"> 
 
@@ -46,7 +46,7 @@ OK, so we broke our `catapp` What exactly shall we do? Let's investigate why `ca
 1. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and notice we have a Router Error.
 2. Click on our **`catapp` Router** to view the error. **Do you notice the error is the same as what we saw in the logs?**
 
-<img src="../img/catapp_router_error.png" alt="Traefik Router Error" height="150"> 
+<img src="../img/catapp_router_error.png" alt="Traefik Router Error" height="250"> 
 
 3. In the ****Router Details** of the `catapp` click the on the **Service** -> `catapp` **What do you see?**
 
@@ -63,10 +63,27 @@ OK, so we broke our `catapp` What exactly shall we do? Let's investigate why `ca
 1. From the `03-Routers-and-Services` directory edit the `docker-compose.yml` file and add the Label to the `catapp` to define the Load Balancer port `- "traefik.http.services.catapp.loadbalancer.server.port=5000"`
 2. From the `03-Routers-and-Services` directory execute this command -> `docker stack deploy -c docker-compose.yml traefik` **this will update our Docker Swarm Stack with the new Label changes.**
 3. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and wait about 15-20 seconds for the changes to be visible in the dashboard. Notice that the Router error is now cleared.
+4. Navigate to the **Router** menu and notice everything is now healthy
+5. Navigate to the **Services** menu and notice the service is now named `catapp@docker` as intended
 
+## 3. Make everything Dynamic
+In this Lab we will comment out the **Service** and **Load Balancer** Labels to see how Traefik will *Dynamically* create the service and **Load Balancer**.
 
+1. From the `03-Routers-and-Services` directory edit the `docker-compose.yml` file and remove the **Labels** `- "traefik.http.routers.catapp.service=catapp"` and `- "traefik.http.services.catapp.loadbalancer.server.port=5000"` from the `catapp` as seen below
 
-4. Stop and clean-up `docker-compose -f docker-compose.cli.yml stop`
+```yaml
+catapp:
+    image: mikesir87/cats:1.0
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
+      - "traefik.http.routers.catapp.entrypoints=web"
+```
+
+2. From the `03-Routers-and-Services` directory execute this command -> `docker stack deploy -c docker-compose.yml traefik` **this will update our Docker Swarm Stack with the new Label changes.**
+3. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and wait about 15-20 seconds for the changes to be visible in the dashboard. 
+4. Navigate to the **HTTP Router** & **HTTP Services** menus. You should now see that Traefik Dynamically created service name which is now recognized by the **Router**
+5. Stop and clean-up `docker stack rm traefik`
 
 ### Solution for the catapp Labels Lab
 
