@@ -3,46 +3,80 @@
 <img src="../img/Traefik_training.png" alt="Traefik Logo" height="350"> 
 
 
-## 1. Deploying a Traefik Router, Service, and Load balancer
+## 1. Deploying a Traefik Router, Service, and Load balancer step-by-step
 1. Before we begin, lets cleanup any running Docker stack `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
 2. Change to the `03-Routers-and-Services` folder
 3. Open the `docker-compose.yml` file in your favorite editor and review the `catapp` section
 4. Start Traefik and the `catapp` but with no labels `docker stack deploy -c docker-compose.yml traefik`
-5. ----- ######### -----
-6. From the `03-Routers-and-Services` directory execute this command -> `docker-compose -f docker-compose.file.yml up -d`
-7. Review the logs output `docker-compose -f docker-compose.file.yml logs`
-8. Stop and clean-up `docker-compose -f docker-compose.file.yml stop`
-
-### Service Labels for this section
+5. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify Traefik is running and `catapp` does not have a router or service in Traefik.
+6. From the `03-Routers-and-Services` edit the `docker-compose.yml` file and add our first label to the `catapp` as seen below. We are adding the `labels:` option and including the Traefik label `- "traefik.enable=true"` to enable catapp inside Traefik.
 
 ```yaml
+catapp:
+     image: mikesir87/cats:1.0
+     labels:
+       - "traefik.enable=true"
+```
+
+7. From the `03-Routers-and-Services` directory execute this command -> `docker stack deploy -c docker-compose.yml traefik` **this will update our Docker Swarm Stack with the new Label changes. Changes take about 10-15 seconds to apply**
+8. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and review the `catapp` Router & Service. **What do you see?**
+   
+`catapp`is now running but with default configurations provided from Traefik. Now, we will set additional Labels to define the Router Rule, Entrypoint, and service.
+
+9. From the `03-Routers-and-Services` directory edit the `docker-compose.yml` file and add the Labels to the `catapp` for a Router rule, define the Entrypoint, and service as seen below. We are adding the `- "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"` to define the hostname of our `catapp` as `catapp.localhost`. Next, we define which Entrypoint to use with the Label `- "traefik.http.routers.catapp.entrypoints=web"` to define HTTP/web Entrypoint. Finally, we define the service with  `- "traefik.http.routers.catapp.service=catapp"` to tell the Router which Service to use. This is for Demo purposes only as normally Traefik pulls this configuration automatically. The new `catapp` section the `docker-compose.yml` file should look like this:
+
+```yaml
+catapp:
+    image: mikesir87/cats:1.0
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
+      - "traefik.http.routers.catapp.entrypoints=web"
+      - "traefik.http.routers.catapp.service=catapp"
+```
+
+10. From the `03-Routers-and-Services` directory execute this command -> `docker stack deploy -c docker-compose.yml traefik` **this will update our Docker Swarm Stack with the new Label changes. Changes take about 10-15 seconds to apply**
+11. Review the logs output `docker service logs traefik_traefik` **Note the name comes from Stack name + service name. So if you used a different Stack name you need to run `docker service logs <your-stack-name_traefik>`**
+12. The last line in the log file should indicate the issue
+13. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and review the `catapp` Router & Service. **What do you see?**
+
+## 2. Troubleshooting Router / Service configurations
+OK, so we broke our `catapp` What exactly shall we do? Let's investigate why `catapp`is not working with Traefk.
+
+1. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and notice we have a Router Error.
+2. Click on our **`catapp` Router** to view the error. **Do you notice the error is the same as what we saw in the logs?**
+
+<img src="../img/catapp_router_error.png" alt="Traefik Router Error" height="150"> 
+
+3. In the ****Router Details** of the `catapp` click the on the **Service** -> `catapp` **What do you see?**
+
+<img src="../img/catapp_router_service.png" alt="Click Traefik Router Service catapp " height="150"> 
+
+4. When you click the `catapp` service from the Router Details screen you should have been greeted by an error `Service not found catapp@docker` 
+5. In the Traefik Dashboard click the **HTTP Services** Menu
+6. Look at the services, what do you notice about the `catapp` service?
+
+<img src="../img/catapp_router_service_name.png" alt="catapp service name is random" height="150"> 
+
+**NOTE** Take a look at the name of the `catapp` service. You will notice the name is random generated. `traefik-catapp-random`
+
+1. From the `03-Routers-and-Services` directory edit the `docker-compose.yml` file and add the Label to the `catapp` to define the Load Balancer port `- "traefik.http.services.catapp.loadbalancer.server.port=5000"`
+2. From the `03-Routers-and-Services` directory execute this command -> `docker stack deploy -c docker-compose.yml traefik` **this will update our Docker Swarm Stack with the new Label changes.**
+3. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and wait about 15-20 seconds for the changes to be visible in the dashboard. Notice that the Router error is now cleared.
+
+
+
+4. Stop and clean-up `docker-compose -f docker-compose.cli.yml stop`
+
+### Solution for the catapp Labels Lab
+
+```yaml
+catapp:
+    image: mikesir87/cats:1.0
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
       - "traefik.http.routers.catapp.entrypoints=web"
       - "traefik.http.routers.catapp.service=catapp"
       - "traefik.http.services.catapp.loadbalancer.server.port=5000"
-```
-
-
-## 2. Troubleshooting Router / Service configurations
-1. Open the `docker-compose.cli.yml` file in your favorite editor and review how Docker starts Traefik using the CLI configuration
-2. From the `02-Configure-Traefik` directory execute this command -> `docker-compose -f docker-compose.cli.yml up -d`
-3. Review the logs output `docker-compose -f docker-compose.cli.yml logs`
-4. Stop and clean-up `docker-compose -f docker-compose.cli.yml stop`
-
-### CLI static config code snippet
-
-```yml
-services:
-  traefik:
-    # The latest official supported Traefik docker image
-    image: traefik:v2.3
-    # Enables the Traefik Dashboard and tells Traefik to listen to docker
-    # --providers tell Traefik to connect to the Docker provider
-    # enable --log.level=INFO so we can see what Traefik is doing in the log files
-    command: 
-      - "--api.insecure=true"
-      - "--providers.docker" 
-      - "--log.level=INFO"
 ```
