@@ -87,6 +87,8 @@ catapp:
 
 ### Solution for the catapp Labels Lab
 
+Please check the `03-Routers-and-Services/docker-compose.answers.yml` if you get stuck anywhere during the lab or need a reference.
+
 ```yaml
 catapp:
     image: mikesir87/cats:1.0
