@@ -9,7 +9,7 @@
 3. Open the `docker-compose.yml` file in your favorite editor and review the `catapp` section
 4. Start Traefik and the `catapp` but with no labels `docker stack deploy -c docker-compose.yml traefik`
 5. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify Traefik is running and `catapp` does not have a router or service in Traefik.
-6. From the `03-Routers-and-Services` edit the `docker-compose.yml` file and add our first label to the `catapp` as seen below. We are adding the `labels:` option and including the Traefik label `- "traefik.enable=true"` to enable catapp inside Traefik.
+6. From the `03-Routers-and-Services` edit the `docker-compose.yml` file and add our first label to the `catapp` as seen below. We are adding/removing the comment from the `labels:` option and uncomment the Traefik label `- "traefik.enable=true"` to enable catapp inside Traefik.
 
 ```yaml
 catapp:
@@ -23,7 +23,7 @@ catapp:
    
 `catapp`is now running but with default configurations provided from Traefik. Now, we will set additional Labels to define the Router Rule, Entrypoint, and service.
 
-9. From the `03-Routers-and-Services` directory edit the `docker-compose.yml` file and add the Labels to the `catapp` for a Router rule, define the Entrypoint, and service as seen below. We are adding the `- "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"` to define the hostname of our `catapp` as `catapp.localhost`. Next, we define which Entrypoint to use with the Label `- "traefik.http.routers.catapp.entrypoints=web"` to define HTTP/web Entrypoint. Finally, we define the service with  `- "traefik.http.routers.catapp.service=catapp"` to tell the Router which Service to use. This is for Demo purposes only as normally Traefik pulls this configuration automatically. The new `catapp` section the `docker-compose.yml` file should look like this:
+1. From the `03-Routers-and-Services` directory edit the `docker-compose.yml` file and add the Labels to the `catapp` for a Router rule, define the Entrypoint, and service as seen below. Uncomment the `- "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"` to define the hostname of our `catapp` as `catapp.localhost`. Next, we define which Entrypoint to use with the **Label** uncomment `- "traefik.http.routers.catapp.entrypoints=web"` to define HTTP/web Entrypoint. Finally, we uncommet the next label `- "traefik.http.routers.catapp.service=catapp"` to tell the Router which Service to use. This is for Demo purposes only as normally Traefik pulls this configuration automatically. The new `catapp` section the `docker-compose.yml` file should look like this:
 
 ```yaml
 catapp:
@@ -60,7 +60,7 @@ OK, so we broke our `catapp` What exactly shall we do? Let's investigate why `ca
 
 **NOTE** Take a look at the name of the `catapp` service. You will notice the name is random generated. `traefik-catapp-random`
 
-1. From the `03-Routers-and-Services` directory edit the `docker-compose.yml` file and add the Label to the `catapp` to define the Load Balancer port `- "traefik.http.services.catapp.loadbalancer.server.port=5000"`
+1. From the `03-Routers-and-Services` directory edit the `docker-compose.yml` file and add the Label to the `catapp` to define the Load Balancer port `- "traefik.http.services.catapp.loadbalancer.server.port=5000"` by removing the comment
 2. From the `03-Routers-and-Services` directory execute this command -> `docker stack deploy -c docker-compose.yml traefik` **this will update our Docker Swarm Stack with the new Label changes.**
 3. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and wait about 15-20 seconds for the changes to be visible in the dashboard. Notice that the Router error is now cleared.
 4. Navigate to the **Router** menu and notice everything is now healthy
@@ -69,7 +69,7 @@ OK, so we broke our `catapp` What exactly shall we do? Let's investigate why `ca
 ## 3. Make everything Dynamic
 In this Lab we will comment out the **Service** and **Load Balancer** Labels to see how Traefik will *Dynamically* create the service and **Load Balancer**.
 
-1. From the `03-Routers-and-Services` directory edit the `docker-compose.yml` file and remove the **Labels** `- "traefik.http.routers.catapp.service=catapp"` and `- "traefik.http.services.catapp.loadbalancer.server.port=5000"` from the `catapp` as seen below
+1. From the `03-Routers-and-Services` directory edit the `docker-compose.yml` file and remove/add comment to the **Labels** `- "traefik.http.routers.catapp.service=catapp"` and `- "traefik.http.services.catapp.loadbalancer.server.port=5000"` from the `catapp`. The only **Labels** enabled as seen below:
 
 ```yaml
 catapp:
@@ -97,3 +97,7 @@ catapp:
       - "traefik.http.routers.catapp.service=catapp"
       - "traefik.http.services.catapp.loadbalancer.server.port=5000"
 ```
+
+# Continue to the Next Lab HTTPS / TLS / Let's Encrypt Lab
+
+### Click here to continue -> [Routers & Services Lab](https://github.com/56kcloud/traefik-training/blob/master/03-Routers-and-Services/traefik-routers-and-services.md)

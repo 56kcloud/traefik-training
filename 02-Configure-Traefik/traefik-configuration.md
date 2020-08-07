@@ -97,3 +97,8 @@ Further Docker information can be found here for [Docker Stack](https://docs.doc
 4. Review the `catapp@docker` router and `catapp@docker` service in the Traefik Dashboard
 5. Test the newly deployed `catapp` service [http://catapp.localhost/](http://catapp.localhost/)
 6. Stop and clean-up `docker stack rm catapp`
+
+
+# Continue to the Next Lab Routers & Services
+
+### Click here to continue -> [Routers & Services Lab](https://github.com/56kcloud/traefik-training/blob/master/03-Routers-and-Services/traefik-routers-and-services.md)

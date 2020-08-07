@@ -59,3 +59,6 @@ X-Real-Ip: 172.20.0.1
 1. Open a browser tab and type or click: http://0.0.0.0:8080 to open the Traefik Dashboard
 
 
+# Continue to the Configure Traefik Lab
+
+### Click here to continue -> [Configure Traefik](https://github.com/56kcloud/traefik-training/blob/master/02-Configure-Traefik/traefik-configuration.md)
