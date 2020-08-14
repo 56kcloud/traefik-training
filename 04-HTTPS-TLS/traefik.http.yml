@@ -29,12 +29,12 @@ entryPoints:
     address: ":443"
 
 ################################################################
-# TLS
+# Challenge HTTP
 ################################################################
 certificatesResolvers:
   myresolver:
     acme:
-      email: brian@56k.cloud 
+      email: your_email@exampl.com 
       storage: acme.json
       httpChallenge:
         entryPoint: web

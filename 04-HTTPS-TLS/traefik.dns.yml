@@ -29,12 +29,12 @@ entryPoints:
     address: ":443"
 
 ################################################################
-# TLS
+# Challenege DNS
 ################################################################
 certificatesResolvers:
   myresolver:
     acme:
-      email: brian@56k.cloud 
+      email: your_email@exampl.com 
       storage: acme.json
       dnsChallenge:
         provider: digitalocean

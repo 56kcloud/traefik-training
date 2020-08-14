@@ -102,4 +102,4 @@ catapp:
 
 # Continue to the Next Lab HTTPS / TLS / Let's Encrypt Lab
 
-### Click here to continue -> [Routers & Services Lab](https://github.com/56kcloud/traefik-training/blob/master/03-Routers-and-Services/traefik-routers-and-services.md)
+### Click here to continue -> [HTTPS  & TLS](https://github.com/56kcloud/traefik-training/blob/master/03-Routers-and-Services/traefik-https-tls.md)
