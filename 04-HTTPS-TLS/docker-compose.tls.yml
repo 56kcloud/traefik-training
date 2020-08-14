@@ -18,7 +18,7 @@ services:
       # Copies the Let's Encrypt certificate locally for ease of backing up
       - ./letsencrypt:/letsencrypt
        # Mounts the Traefik static configuration inside the Traefik container
-      - ./traefik.yml:/etc/traefik/traefik.tls.yml
+      - ./traefik.tls.yml:/etc/traefik/traefik.yml
 
 # Add the catapp service
   catapp:
