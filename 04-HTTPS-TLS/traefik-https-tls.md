@@ -58,6 +58,6 @@
 2. Now that the Wildcard is configured for DNS, we can edit the Edit the `docker-compose.dns.yml` `catapp` section and add your domain here in the `- "traefik.http.routers.catapp.rule=Host(`your_domain_here`)"` label. This time we will update the domain to `training.your_domain_here.com` 
 3. Open up `https://training.your_domain_here`
 
-# Continue to the Next Lab Middlewarst Lab
+# Continue to the Next Lab Middlewares
 
 ### Click here to continue -> [Middlewares Lab](https://github.com/56kcloud/traefik-training/blob/master/05-middlewares/traefik-middlewares.md)
