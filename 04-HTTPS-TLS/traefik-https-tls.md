@@ -52,7 +52,7 @@
 
 ## 3.1 Use Wildcard Let's Encrypt Certificate
 
-<img src="../img/traefik-dns.png" alt="Traefik DNS" height="250"> 
+<img src="../img/traefik-dns-wildcard.png" alt="Traefik DNS" height="250"> 
 
 1. Ensure your DNS settings contain the `*.` in front of your domain `*.you_domain.com` which enables all sub-domain certificates
 2. Now that the Wildcard is configured for DNS, we can edit the Edit the `docker-compose.dns.yml` `catapp` section and add your domain here in the `- "traefik.http.routers.catapp.rule=Host(`your_domain_here`)"` label. This time we will update the domain to `training.your_domain_here.com` 
