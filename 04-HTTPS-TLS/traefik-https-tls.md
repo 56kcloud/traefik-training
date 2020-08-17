@@ -34,7 +34,7 @@
 5. Open the `docker-compose.http.yml` file in your favorite editor and review the `catapp` section
 6. Edit the `docker-compose.http.yml` `catapp` section and add your domain here in the `- "traefik.http.routers.catapp.rule=Host(`your_domain_here`)"` label
 7. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.yml traefik`
-8. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify Traefik is running and `catapp` has TLS enabled.
+8. Open the Traefik Dashboard `http://your_domain_here:8080` and verify Traefik is running and `catapp` has TLS enabled.
 9.  Open the `catapp` using the domain you filled in at step 6. Remember to use HTTPS now https://your_domain_here.com 
 10. You should now see the `catapp` served with HTTPS and a proper Let's Encrypt Certificate
 
@@ -46,9 +46,17 @@
 5. Open the `docker-compose.dns.yml` file in your favorite editor and review the `catapp` section
 6. Edit the `docker-compose.dns.yml` `catapp` section and add your domain here in the `- "traefik.http.routers.catapp.rule=Host(`your_domain_here`)"` label
 7. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.yml traefik`
-8. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify Traefik is running and `catapp` has TLS enabled.
+8. Open the Traefik Dashboard `http://your_domain_here:8080` and verify Traefik is running and `catapp` has TLS enabled.
 9.  Open the `catapp` using the domain you filled in at step 6. Remember to use HTTPS now https://your_domain_here.com 
 10. You should now see the `catapp` served with HTTPS and a proper Let's Encrypt Certificate
+
+## 3.1 Use Wildcard Let's Encrypt Certificate
+
+<img src="../img/traefik-dns.png" alt="Traefik DNS" height="250"> 
+
+1. Ensure your DNS settings contain the `*.` in front of your domain `*.you_domain.com` which enables all sub-domain certificates
+2. Now that the Wildcard is configured for DNS, we can edit the Edit the `docker-compose.dns.yml` `catapp` section and add your domain here in the `- "traefik.http.routers.catapp.rule=Host(`your_domain_here`)"` label. This time we will update the domain to `training.your_domain_here.com` 
+3. Open up `https://training.your_domain_here`
 
 # Continue to the Next Lab HTTPS / TLS / Let's Encrypt Lab
 
