@@ -11,7 +11,7 @@
 3. I've created the following DNS entries to perform all 3 labs
 
 
-<img src="../img/traefik-dns.png" alt="Traefik DNS" height="150"> 
+<img src="../img/traefik-dns.png" alt="Traefik DNS" height="250"> 
 
 
 ## 1. Deploy Traefik with Let's Encrypt HTTP Challenge
