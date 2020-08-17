@@ -8,6 +8,11 @@
 
 1. Ensure you have a domain name for testing
 2. Configure the DNS of your domain name to use your Docker server where you will run the below lab. Refer to your domain providers documentation.
+3. I've created the following DNS entries to perform all 3 labs
+
+
+<img src="../img/Traefik_dns.png" alt="Traefik DNS" height="350"> 
+
 
 ## 1. Deploy Traefik with Let's Encrypt HTTP Challenge
 1. Before we begin, lets cleanup any running Docker stack `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
