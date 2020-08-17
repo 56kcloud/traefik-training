@@ -19,6 +19,8 @@ services:
       - ./letsencrypt:/letsencrypt
        # Mounts the Traefik static configuration inside the Traefik container
       - ./traefik.dns.yml:/etc/traefik/traefik.yml
+    environment:
+      - "DO_AUTH_TOKEN=<Your Super Secret Digital Ocean Token Goes here>"
 
 # Add the catapp service
   catapp:
