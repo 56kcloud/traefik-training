@@ -8,7 +8,7 @@
 
 1. Ensure you have a domain name for testing
 2. Configure the DNS of your domain name to use your Docker server where you will run the below lab. Refer to your domain providers documentation.
-3. I've created the following DNS entries to perform all 3 labs
+3. I've created the following DNS entries in Digital Ocean to perform all 3 labs. Please adjust your DNS according to where you host Docker and your DNS:
 
 
 <img src="../img/traefik-dns.png" alt="Traefik DNS" height="250"> 
