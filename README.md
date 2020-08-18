@@ -2,7 +2,7 @@
 
 <img src="./img/Traefik_training.png" alt="Traefik Logo" height="350"> 
 
-Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo contains [Traefik](https://containo.us/traefik/) course resources for the [Traefik Training](https://training.56k.cloud/products/from-0-to-production-with-traefik-and-docker) course authored both by the respective companies or organizations, and by members of the community. We welcome contributions and want to grow the repo.
+Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo contains [Traefik](https://containo.us/traefik/) course resources for the [Traefik Training](http://training.56k.cloud/traefik-training) course authored both by the respective companies or organizations, and by members of the community. We welcome contributions and want to grow the repo.
 
 ## Traefik Training Course
 
