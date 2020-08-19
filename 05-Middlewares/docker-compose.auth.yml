@@ -23,12 +23,13 @@ services:
      image: mikesir87/cats:1.0
      labels:
        - "traefik.enable=true"
+  # Routers
        - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
        - "traefik.http.routers.catapp.service=catapp"
        - "traefik.http.routers.catapp.entrypoints=web"
        - "traefik.http.routers.catapp.middlewares=test-auth"
-
+  # Services
        - "traefik.http.services.catapp.loadbalancer.server.port=5000"
-
+  # Middlewares
        - "traefik.http.middlewares.test-auth.basicauth.users=traefik:$$apr1$$.zPbdVg8$$LcHeyCZElH.JfxkxxlMPI."
        
