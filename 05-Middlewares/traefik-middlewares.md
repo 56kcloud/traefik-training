@@ -26,11 +26,12 @@ traefik:$$apr1$$.zPbdVg8$$LcHeyCZElH.JfxkxxlMPI.
 ```
 
 5. Open the `docker-compose.auth.yml` file in your favorite editor and review the `catapp` section
-6. Edit the `docker-compose.http.yml` `catapp` section and add your domain here in the `- "traefik.http.routers.catapp.rule=Host(`your_domain_here`)"` label
-7. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.yml traefik`
-8. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify Traefik is running and `catapp` has TLS enabled.
-9.  Open the `catapp` using the domain you filled in at step 6. Remember to use HTTPS now https://your_domain_here.com 
-10. You should now see the `catapp` served with HTTPS and a proper Let's Encrypt Certificate
+6. Edit the `docker-compose.http.yml` `catapp` section and add the Auth Middleware to our `catapp` router  `- "traefik.http.middlewares.test-auth.basicauth.users=traefik:$$apr1$$.zPbdVg8$$LcHeyCZElH.JfxkxxlMPI."`
+7. Update the **Router** to point to the new Middleware `- "traefik.http.routers.catapp.middlewares=test-auth"`
+8. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.yml traefik`
+9. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify the new `test-auth` **Middleware** is running and and assigned to the `catapp` service
+10. Open the `catapp` application in a new browser tab [http://catapp.localhost](http://catapp.localhost)
+11. Enter the user `traefik` and password `training` to visit your `catapp` application
 
 ## 2. Deploy Traefik with Let's Encrypt TLS Challenge
 1. Before we begin, lets cleanup the HTTP stack  `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
