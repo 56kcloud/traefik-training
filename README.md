@@ -18,17 +18,17 @@ Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo
 ## 4. HTTPS / TLS / Let's Encrypt
 * [Traefik DNS, HTTPS, and TLS](./04-HTTPS-TLS/traefik-https-tls.md)
 
-<!-- ## 5. Traefik Middlewares
-* [Traefik Middlewares](.02-Traefik-Overview/traefik_configuration.md)
+ ## 5. Traefik Middlewares
+* [Traefik Middlewares](./05-Traefik-Overview//traefik-middlewares.md)
 
-## 6. Traefik Observability
-* [Traefik Observability](./02-Traefik-Overview/traefik_configuration.md)
+<!-- ## 6. Traefik Observability
+* [Traefik Observability](./06-Traefik-Overview/traefik_configuration.md)
 
 ## 7. Traefik Operations
-* [Traefik Operations](./02-Traefik-Overview/traefik_configuration.md)
+* [Traefik Operations](./07-Traefik-Overview/traefik_configuration.md)
 
 ## 8. Traefik Advanced Tips
-* [Traefik Advanced Tips](./02-Traefik-Overview/traefik_configuration.md)
+* [Traefik Advanced Tips](./08-Traefik-Overview/traefik_configuration.md)
 
 ## 9. Traefik Resources
 * [Traefik Resources](./02-Traefik-Overview/traefik_configuration.md) -->
