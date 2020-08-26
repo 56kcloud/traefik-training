@@ -2,26 +2,17 @@
 
 <img src="../img/Traefik_training.png" alt="Traefik Logo" height="350"> 
 
-<img src="../img/traefik-dns.png" alt="Traefik DNS" height="250"> 
-
 ## 1. Add Basic Authentication to our CatApp
 1. Before we begin, lets cleanup any running Docker stack `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
 2. Change to the `05-Middlewares` folder
-3. Generate a new password for our `catapp` by running `htpasswd -nb traefik training`
+3. Generate a new password for our `catapp` by running `echo $(htpasswd -nb traefik training) | sed -e s/\\$/\\$\\$/g`
 4. Every `$` in the password needs to have double `$$` to escape the characters correctly. 
 
 Run the `htpasswd` command
 
 ```bash
-htpasswd -nb traefik training
+echo $(htpasswd -nb traefik training) | sed -e s/\\$/\\$\\$/g
 traefik:$apr1$.zPbdVg8$LcHeyCZElH.JfxkxxlMPI.
-
-```
-
-How the password looks after Escaping the `$`
-
-```bash
-traefik:$$apr1$$.zPbdVg8$$LcHeyCZElH.JfxkxxlMPI.
 
 ```
 
@@ -33,48 +24,80 @@ traefik:$$apr1$$.zPbdVg8$$LcHeyCZElH.JfxkxxlMPI.
 10. Open the `catapp` application in a new browser tab [http://catapp.localhost](http://catapp.localhost)
 11. Enter the user `traefik` and password `training` to visit your `catapp` application
 
-## 2. Deploy Traefik with Let's Encrypt TLS Challenge
+## 2. Add Compression Middleware to our CatApp
 1. Before we begin, lets cleanup the HTTP stack  `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
-2. Change to the `04-HTTPS-and-TLS` folder
-3. Open the `traefik.tls.yml` file in your favorite editor and review the `Challenge TLS` section
-4. Edit the `traefik.tls.yml` and edit your `email:` located in the `Challenge TLS` section
-5. Open the `docker-compose.http.yml` file in your favorite editor and review the `catapp` section
-6. Edit the `docker-compose.http.yml` `catapp` section and add your domain here in the `- "traefik.http.routers.catapp.rule=Host(`your_domain_here`)"` label
-7. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.yml traefik`
-8. Open the Traefik Dashboard `http://your_domain_here:8080` and verify Traefik is running and `catapp` has TLS enabled.
-9.  Open the `catapp` using the domain you filled in at step 6. Remember to use HTTPS now https://your_domain_here.com 
-10. You should now see the `catapp` served with HTTPS and a proper Let's Encrypt Certificate
+2. Change to the `05-HTTPS-and-TLS` folder
+3. Add the **Compress Middleware** to our `catapp` section `- "traefik.http.middlewares.test-compress.compress=true"`
+4. Update the router to include the **Compress Middleware** ` - "traefik.http.routers.catapp.middlewares=test-auth,test-compress"`
+5. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.yml traefik`
+6. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify the new `test-compress` **Middleware** is running and and assigned to the `catapp` service
+7.  Open the `catapp` application in a new browser tab [http://catapp.localhost](http://catapp.localhost)
 
-## 3. Deploy Traefik with Let's Encrypt DNS Challenge
-1. Before we begin, lets cleanup the TLS stack `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
-2. Change to the `04-HTTPS-and-TLS` folder
-3. Log in to your DNS provider and collect the Authorization Tokens for your provider. Review the [https://docs.traefik.io/v2.3/https/acme/#providers](https://docs.traefik.io/v2.3/https/acme/#providers) list to see which tokens you require for your provider. This step is unique to the DNS provider you are using. 
-4. Copy the Authorization Tokens from your provider
-5. Open the `docker-compose.dns.yml` file in your favorite editor and review the `traefik` section
-6. Edit the `Environment` section under the `Traefik` service.
-7. Paste the Authorization Tokens from your provider in this section. You may need different and/or additional fields here based on your provider.
+## 3. Add Error Pages Middleware
+1. Before we begin, lets cleanup the HTTP stack  `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
+2. Change to the `05-HTTPS-and-TLS` folder
+3. Add the Error Page service below the `catapp`
 
-```yml
-    environment:
-      - "DO_AUTH_TOKEN=<Your Super Secret Digital Ocean Token Goes here>"
+  ```yaml
+  # Error Page service
+    error:
+      image: guillaumebriday/traefik-custom-error-pages
+      labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.error.rule=Host(`error.localhost`)"
+            - "traefik.http.routers.error.service=error"
+            - "traefik.http.services.error.loadbalancer.server.port=80"
+            - "traefik.http.routers.error.entrypoints=web"
+  ```
+
+4. Add the **Error Page Middleware** to our `catapp` section
+
+```yaml
+# Error Pages Middleware
+       - "traefik.http.middlewares.test-errorpages.errors.status=400-599"
+       - "traefik.http.middlewares.test-errorpages.errors.service=error"
+       - "traefik.http.middlewares.test-errorpages.errors.query=/{status}.html"
 ```
 
-8. In the same `docker-compose.dns.yml` edit the `catapp` section and add your domain here in the `- "traefik.http.routers.catapp.rule=Host(`your_domain_here`)"` label
-9.  Open the `traefik.dns.yml` file in your favorite editor and review the `Challenge DNS` section
-10. Edit the `traefik.dns.yml` and edit your `email:` located in the `Challenge DNS` section
-11. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.yml traefik`
-12. Open the Traefik Dashboard `http://your_domain_here:8080` and verify Traefik is running and `catapp` has TLS enabled.
-13. Open the `catapp` using the domain you filled in at step 6. Remember to use HTTPS now https://your_domain_here.com 
-14. You should now see the `catapp` served with HTTPS and a proper Let's Encrypt Certificate
 
-## 3.1 Use Wildcard Let's Encrypt Certificate
+5. Update the router to include the **Error Page middleware** ` - "traefik.http.routers.catapp.middlewares=test-auth,test-compress,test-errorpages"`
+6. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.yml traefik`
+7. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify the new `test-errorpages` **Middleware** is running and and assigned to the `catapp` service
+8.  Open the `catapp` application in a new browser tab [http://catapp.localhost](http://catapp.localhost)
+9.  Let's produce a 404 error to see our error page in actions. Open a new browser tab [http://catapp.localhost/broken](http://catapp.localhost/broken)
 
-<img src="../img/traefik-dns-wildcard.png" alt="Traefik DNS" height="250"> 
+## 4. Add Rate Limit Middleware
+1. Before we begin, lets cleanup the HTTP stack  `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
+2. Change to the `05-HTTPS-and-TLS` folder
+3. Add the **Rate Limit Middleware** to our `catapp` section `- "traefik.http.middlewares.test-ratelimit.ratelimit.average=2"`
+4. Update the router to include the **Rate Limit middleware** ` - "traefik.http.routers.catapp.middlewares=test-auth,test-compress,test-ratelimit"`
+5. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.yml traefik`
+6. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify the new `test-ratelimit` **Middleware** is running and and assigned to the `catapp` service
+7. Open the `catapp` application in a new browser tab [http://catapp.localhost](http://catapp.localhost)
+8. Refresh the `catapp` page quickly to see the Rate Limit error
 
-1. Add a new DNS record to your DNS provider. Add `*.` in front of your domain `*.you_domain.com` which enables all sub-domain certificates
-2. Now that the Wildcard is configured for DNS, we can edit the Edit the `docker-compose.dns.yml` `catapp` section and add your domain here in the `- "traefik.http.routers.catapp.rule=Host(`your_domain_here`)"` label. This time we will update the domain to `training.your_domain_here.com` 
-3. Open up `https://training.your_domain_here`
+## 4. Add Redirect Middleware
 
-# Continue to the Next Lab Middlewares
+**This section we need your DNS settings again from Section `04-HTTPS-TLS` We will use the DNS settings to test the HTTP -> HTTPS redirect. Ensure your DNS settings are configured in the `docker-compose.redirect.yml`**
 
-### Click here to continue -> [Middlewares Lab](https://github.com/56kcloud/traefik-training/blob/master/05-middlewares/traefik-middlewares.md)
+1. Before we begin, lets cleanup the HTTP stack  `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
+2. Change to the `05-HTTPS-and-TLS` folder
+3. Add the **Redirect Scheme middleware** to our `catapp` section
+
+  ```yaml
+        - "traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https"
+        - "traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true"
+  ```
+
+
+4. Update the router to include the **Redirect Scheme middleware** ` - "traefik.http.routers.catapp.middlewares=test-auth,test-compress,test-redirectscheme"`
+5. Update your domain name in `- "traefik.http.routers.catapp.rule=Host(`<your-domain-here>`)"`
+6. Add your DNS tokens to the Enviornment section of Traefik
+7. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.yml traefik`
+8. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify the new `test-redirectscheme` **Middleware** is running and and assigned to the `catapp` service
+9.  Open the `catapp` application in a new browser tab and open `your-domain` configured in the DNS section
+10. You should see your `catapp` domain redirect from HTTP -> HTTPS automagically. 
+
+# Continue to the Next Observability
+
+### Click here to continue -> [Observability Lab](https://github.com/56kcloud/traefik-training/blob/master/06-observability/traefik-observability.md)

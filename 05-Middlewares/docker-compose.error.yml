@@ -3,7 +3,7 @@ version: '3'
 services:
   traefik:
     # The latest official supported Traefik docker image
-    image: traefik:v2.2
+    image: traefik:v2.3
     # Enables the Traefik Dashboard and tells Traefik to listen to docker
     # enable --log.level=INFO so we can see what Traefik is doing in the log files
     ports:
@@ -50,5 +50,4 @@ services:
           - "traefik.http.routers.error.rule=Host(`error.localhost`)"
           - "traefik.http.routers.error.service=error"
           - "traefik.http.services.error.loadbalancer.server.port=80"
-          # - traefik.frontend.rule=PathPrefixStrip:/wait
           - "traefik.http.routers.error.entrypoints=web"

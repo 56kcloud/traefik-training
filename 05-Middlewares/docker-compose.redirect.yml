@@ -15,18 +15,20 @@ services:
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
+      # Copies the Let's Encrypt certificate locally for ease of backing up
+      - ./letsencrypt:/letsencrypt
        # Mounts the Traefik static configuration inside the Traefik container
       - ./traefik.dns.yml:/etc/traefik/traefik.yml
+    environment:
+      - "DO_AUTH_TOKEN=<Your Super Secret Digital Ocean Token Goes here>"
 
 # Add the catapp service
   catapp:
      image: mikesir87/cats:1.0
-     environment:
-      - "DO_AUTH_TOKEN=<Your Super Secret Digital Ocean Token Goes here>"
      labels:
        - "traefik.enable=true"
   # Routers
-       - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
+       - "traefik.http.routers.catapp.rule=Host(`<your-domain-here>`)"
        - "traefik.http.routers.catapp.service=catapp"
        - "traefik.http.routers.catapp.entrypoints=websecure"
        - "traefik.http.routers.catapp.tls.certresolver=myresolver"

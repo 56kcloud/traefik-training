@@ -3,7 +3,7 @@ version: '3'
 services:
   traefik:
     # The latest official supported Traefik docker image
-    image: traefik:v2.2
+    image: traefik:v2.3
     # Enables the Traefik Dashboard and tells Traefik to listen to docker
     # enable --log.level=INFO so we can see what Traefik is doing in the log files
     ports:
