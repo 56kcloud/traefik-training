@@ -34,3 +34,15 @@ services:
        - "traefik.http.middlewares.test-auth.basicauth.users=traefik:$$apr1$$.zPbdVg8$$LcHeyCZElH.JfxkxxlMPI.,user2:$$apr1$$XDrP1Fb1$$SZqSEjvNYW44vgJgI3iEP0"
        # user1: traefik password: training
        # user2: user2 password: test123
+       # Create hash password -> echo $(htpasswd -nb user2 test123) | sed -e s/\\$/\\$\\$/g
+  # Compress Middleware
+       - "traefik.http.middlewares.test-compress.compress=true"
+  # Error Pages Middleware
+       - "traefik.http.middlewares.test-errorpages.errors.status=400-499"
+       - "traefik.http.middlewares.test-errorpages.errors.service=serviceError"
+       - "traefik.http.middlewares.test-errorpages.errors.query=/{status}.html"
+  # Rate Limit Middleware
+       - "traefik.http.middlewares.test-ratelimit.ratelimit.average=1"
+  # Redirect Scheme HTTP -> HTTPS
+       - "traefik.http.middlewares.test-redirectscheme.scheme=https"
+       - "traefik.http.middlewares.test-redirectscheme.scheme.permanent=true"

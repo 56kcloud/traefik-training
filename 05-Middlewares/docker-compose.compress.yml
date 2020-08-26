@@ -34,3 +34,5 @@ services:
        - "traefik.http.middlewares.test-auth.basicauth.users=traefik:$$apr1$$.zPbdVg8$$LcHeyCZElH.JfxkxxlMPI.,user2:$$apr1$$XDrP1Fb1$$SZqSEjvNYW44vgJgI3iEP0"
        # user1: traefik password: training
        # user2: user2 password: test123
+  # Compress Middleware
+       - "traefik.http.middlewares.test-compress.compress=true"
