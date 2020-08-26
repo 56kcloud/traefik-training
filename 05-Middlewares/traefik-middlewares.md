@@ -76,7 +76,7 @@ traefik:$apr1$.zPbdVg8$LcHeyCZElH.JfxkxxlMPI.
 7. Open the `catapp` application in a new browser tab [http://catapp.localhost](http://catapp.localhost)
 8. Refresh the `catapp` page quickly to see the Rate Limit error
 
-## 4. Add Redirect Middleware
+## 5. Add Redirect Middleware
 
 **This section we need your DNS settings again from Section `04-HTTPS-TLS` We will use the DNS settings to test the HTTP -> HTTPS redirect. Ensure your DNS settings are configured in the `docker-compose.redirect.yml`**
 
