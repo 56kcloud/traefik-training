@@ -29,12 +29,14 @@ services:
        - "traefik.enable=true"
   # Routers
        - "traefik.http.routers.catapp.rule=Host(`<your-domain-here>`)"
-       - "traefik.http.routers.catapp.service=catapp"
-       - "traefik.http.routers.catapp.entrypoints=websecure"
-       - "traefik.http.routers.catapp.tls.certresolver=myresolver"
-       - "traefik.http.routers.catapp.middlewares=test-auth,test-compress,test-errorpages,test-ratelimit,test-redirectscheme"
+       - "traefik.http.routers.catapp.entrypoints=web"
+       - "traefik.http.routers.catapp.middlewares=redirect"
+       - "traefik.http.routers.catapp-secure.rule=Host(`<your-domain-here>`)"
+       - "traefik.http.routers.catapp-secure.entrypoints=websecure"
+       - "traefik.http.routers.catapp-secure.tls.certresolver=myresolver"
+       - "traefik.http.routers.catapp-secure.middlewares=test-auth,test-compress,test-errorpages,test-ratelimit"
   # Services
-       - "traefik.http.services.catapp.loadbalancer.server.port=5000"
+       - "traefik.http.services.catapp-secure.loadbalancer.server.port=5000"
   # Middleware BasicAuth
        - "traefik.http.middlewares.test-auth.basicauth.users=traefik:$$apr1$$.zPbdVg8$$LcHeyCZElH.JfxkxxlMPI.,user2:$$apr1$$XDrP1Fb1$$SZqSEjvNYW44vgJgI3iEP0"
        # user1: traefik password: training

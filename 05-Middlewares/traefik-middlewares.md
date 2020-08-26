@@ -86,21 +86,37 @@ traefik:$apr1$.zPbdVg8$LcHeyCZElH.JfxkxxlMPI.
 1. Before we begin, lets cleanup the HTTP stack  `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
 2. Change to the `05-HTTPS-and-TLS` folder
 3. Open the `docker-compose.redirect.yml` file in your favorite editor and review the `catapp` section
-4. Add the **Redirect Scheme middleware** to our `catapp` section
+4. Next, we need to seperate the two entrypoints for HTTP and HTTPS. First, we relable HTTP
+   
+
+```yaml
+  # Routers
+       - "traefik.http.routers.catapp.rule=Host(`<your-domain-here>`)"
+       - "traefik.http.routers.catapp.entrypoints=web"
+       - "traefik.http.routers.catapp.middlewares=redirect"
+``` 
+5. Relabel the entrypoint labels for HTTPS using `catapp-secure`
+
+```yaml
+       - "traefik.http.routers.catapp-secure.rule=Host(`<your-domain-here>`)"
+       - "traefik.http.routers.catapp-secure.entrypoints=websecure"
+       - "traefik.http.routers.catapp-secure.tls.certresolver=myresolver"
+       - "traefik.http.routers.catapp-secure.middlewares=test-auth,test-compress,test-errorpages,test-ratelimit"
+```
+
+6. Add the **Redirect Scheme middleware** to our `catapp` section
 
   ```yaml
         - "traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https"
         - "traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true"
   ```
 
-
-4. Update the router to include the **Redirect Scheme middleware** ` - "traefik.http.routers.catapp.middlewares=test-auth,test-compress,test-redirectscheme"`
-5. Update your domain name in `- "traefik.http.routers.catapp.rule=Host(`<your-domain-here>`)"`
-6. Add your DNS tokens to the Enviornment section of Traefik
-7. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.redirect.yml traefik`
-8. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify the new `test-redirectscheme` **Middleware** is running and and assigned to the `catapp` service
-9.  Open the `catapp` application in a new browser tab and open `your-domain` configured in the DNS section
-10. You should see your `catapp` domain redirect from HTTP -> HTTPS automagically. 
+7. Update your domain name in `- "traefik.http.routers.catapp.rule=Host(`<your-domain-here>`)"` and here `- "traefik.http.routers.catapp-secure.rule=Host(`<your-domain-here>`)"`
+8. Add your DNS tokens to the Enviornment section of Traefik
+9. Start Traefik and the `catapp` `docker stack deploy -c docker-compose.redirect.yml traefik`
+10. Open the Traefik Dashboard [http://0.0.0.0:8080](http://0.0.0.0:8080) and verify the new `test-redirectscheme` **Middleware** is running and and assigned to the `catapp` service
+11. Open the `catapp` application in a new browser tab and open `your-domain` configured in the DNS section
+12. You should see your `catapp` domain redirect from HTTP -> HTTPS automagically. 
 
 # Continue to the Next Observability
 
