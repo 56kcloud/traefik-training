@@ -27,19 +27,30 @@ services:
        - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
        - "traefik.http.routers.catapp.service=catapp"
        - "traefik.http.routers.catapp.entrypoints=web"
-       - "traefik.http.routers.catapp.middlewares=test-auth"
+       - "traefik.http.routers.catapp.middlewares=test-auth,test-compress,test-errorpages,test-ratelimit"
   # Services
        - "traefik.http.services.catapp.loadbalancer.server.port=5000"
   # Middleware BasicAuth
        - "traefik.http.middlewares.test-auth.basicauth.users=traefik:$$apr1$$.zPbdVg8$$LcHeyCZElH.JfxkxxlMPI.,user2:$$apr1$$XDrP1Fb1$$SZqSEjvNYW44vgJgI3iEP0"
        # user1: traefik password: training
        # user2: user2 password: test123
+       # Create hash password -> echo $(htpasswd -nb user2 test123) | sed -e s/\\$/\\$\\$/g
   # Compress Middleware
        - "traefik.http.middlewares.test-compress.compress=true"
   # Error Pages Middleware
-       - "traefik.http.middlewares.test-errorpages.errors.status=400-499"
-       - "traefik.http.middlewares.test-errorpages.errors.service=serviceError"
+       - "traefik.http.middlewares.test-errorpages.errors.status=400-599"
+       - "traefik.http.middlewares.test-errorpages.errors.service=error"
        - "traefik.http.middlewares.test-errorpages.errors.query=/{status}.html"
   # Rate Limit Middleware
-       - "traefik.http.middlewares.test-ratelimit.ratelimit.average=1"
+       - "traefik.http.middlewares.test-ratelimit.ratelimit.average=2"
   
+  # Error Page service
+  error:
+    image: guillaumebriday/traefik-custom-error-pages
+    labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.error.rule=Host(`error.localhost`)"
+          - "traefik.http.routers.error.service=error"
+          - "traefik.http.services.error.loadbalancer.server.port=80"
+          # - traefik.frontend.rule=PathPrefixStrip:/wait
+          - "traefik.http.routers.error.entrypoints=web"

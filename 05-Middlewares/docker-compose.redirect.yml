@@ -26,8 +26,8 @@ services:
   # Routers
        - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
        - "traefik.http.routers.catapp.service=catapp"
-       - "traefik.http.routers.catapp.entrypoints=web"
-       - "traefik.http.routers.catapp.middlewares=test-auth"
+       - "traefik.http.routers.catapp.entrypoints=web,websecure"
+       - "traefik.http.routers.catapp.middlewares=test-auth,test-compress,test-errorpages,test-ratelimit,test-redirectscheme"
   # Services
        - "traefik.http.services.catapp.loadbalancer.server.port=5000"
   # Middleware BasicAuth
@@ -38,11 +38,22 @@ services:
   # Compress Middleware
        - "traefik.http.middlewares.test-compress.compress=true"
   # Error Pages Middleware
-       - "traefik.http.middlewares.test-errorpages.errors.status=400-499"
-       - "traefik.http.middlewares.test-errorpages.errors.service=serviceError"
+       - "traefik.http.middlewares.test-errorpages.errors.status=400-599"
+       - "traefik.http.middlewares.test-errorpages.errors.service=error"
        - "traefik.http.middlewares.test-errorpages.errors.query=/{status}.html"
   # Rate Limit Middleware
-       - "traefik.http.middlewares.test-ratelimit.ratelimit.average=1"
+       - "traefik.http.middlewares.test-ratelimit.ratelimit.average=2"
   # Redirect Scheme HTTP -> HTTPS
-       - "traefik.http.middlewares.test-redirectscheme.scheme=https"
-       - "traefik.http.middlewares.test-redirectscheme.scheme.permanent=true"
+       - "traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https"
+       - "traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true"
+
+  # Error Page service
+  error:
+    image: guillaumebriday/traefik-custom-error-pages
+    labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.error.rule=Host(`error.localhost`)"
+          - "traefik.http.routers.error.service=error"
+          - "traefik.http.services.error.loadbalancer.server.port=80"
+          # - traefik.frontend.rule=PathPrefixStrip:/wait
+          - "traefik.http.routers.error.entrypoints=web"
