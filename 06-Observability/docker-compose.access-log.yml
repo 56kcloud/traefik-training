@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  traefik:
+    # The latest official supported Traefik docker image
+    image: traefik:v2.3
+    # Enables the Traefik Dashboard and tells Traefik to listen to docker
+    # enable --log.level=INFO so we can see what Traefik is doing in the log files
+    ports:
+      # Exposes port 80 for incomming web requests
+      - "80:80"
+      - "443:443"
+      # The Web UI port http://0.0.0.0:8080 (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
+       # Mounts the Traefik static configuration inside the Traefik container
+      - ./traefik.access-log.yml:/etc/traefik/traefik.yml
+
+# Add the catapp service
+  catapp:
+     image: mikesir87/cats:1.0
+     labels:
+       - "traefik.enable=true"
+  # Routers
+       - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
+       - "traefik.http.routers.catapp.service=catapp"
+       - "traefik.http.routers.catapp.entrypoints=web"
+       - "traefik.http.routers.catapp.middlewares=test-compress,test-errorpages"
+  # Services
+       - "traefik.http.services.catapp.loadbalancer.server.port=5000"
+  # Compress Middleware
+       - "traefik.http.middlewares.test-compress.compress=true"
+  # Error Pages Middleware
+       - "traefik.http.middlewares.test-errorpages.errors.status=400-599"
+       - "traefik.http.middlewares.test-errorpages.errors.service=error"
+       - "traefik.http.middlewares.test-errorpages.errors.query=/{status}.html"
+
+# Error Page service
+  error:
+    image: guillaumebriday/traefik-custom-error-pages
+    labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.error.rule=Host(`error.localhost`)"
+          - "traefik.http.routers.error.service=error"
+          - "traefik.http.services.error.loadbalancer.server.port=80"
+          - "traefik.http.routers.error.entrypoints=web"
