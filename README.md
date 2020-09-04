@@ -21,9 +21,10 @@ Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo
  ## 5. Traefik Middlewares
 * [Traefik Middlewares](./05-Middlewares/traefik-middlewares.md)
 
-<!-- ## 6. Traefik Observability
-* [Traefik Observability](./06-Traefik-Overview/traefik_configuration.md)
+## 6. Traefik Observability
+* [Traefik Observability](./06-Traefik-Overview/traefik_observability.md)
 
+<!-- 
 ## 7. Traefik Operations
 * [Traefik Operations](./07-Traefik-Overview/traefik_configuration.md)
 
