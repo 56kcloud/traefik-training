@@ -1,0 +1,3 @@
+GF_SECURITY_ADMIN_PASSWORD=foobar
+GF_USERS_ALLOW_SIGN_UP=false
+GF_INSTALL_PLUGINS=grafana-piechart-panel

@@ -1,0 +1,66 @@
+################################################################
+# API and dashboard configuration
+################################################################
+api:
+  # Dashboard
+  #
+  #
+  dashboard: true
+  insecure: true
+################################################################
+# Docker configuration backend
+################################################################
+providers:
+  docker:
+    swarmMode: true
+
+################################################################
+# Access Logging
+################################################################
+# enable Access logs
+accessLog: {}
+#Configuring Multiple Filters
+# accessLog:
+#   filters:    
+#     statusCodes:
+#       - "404"
+#     retryAttempts: true
+#     minDuration: "10ms"
+
+################################################################
+# Traefik Logging -  DEBUG, PANIC, FATAL, ERROR, WARN, and INFO (DEFAULT is ERROR)
+################################################################
+log:
+  level: INFO
+
+################################################################
+# Prometheus Metrics
+################################################################  
+metrics:
+  prometheus:
+    buckets:
+      - 0.1
+      - 0.3
+      - 1.2
+      - 5.0
+
+################################################################
+# Entrypoint
+################################################################
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+################################################################
+# Challenge DNS
+################################################################
+# certificatesResolvers:
+#   myresolver:
+#     acme:
+#       email: your_email@example.com 
+#       storage: acme.json
+#       dnsChallenge:
+#         provider: digitalocean
+#         delayBeforeCheck: 0
