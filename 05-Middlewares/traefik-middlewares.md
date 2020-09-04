@@ -38,7 +38,7 @@ traefik:$apr1$.zPbdVg8$LcHeyCZElH.JfxkxxlMPI.
 1. Before we begin, lets cleanup the HTTP stack  `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
 2. Change to the `05-HTTPS-and-TLS` folder
 3. Open the `docker-compose.error.yml` file in your favorite editor and review the `catapp` section
-4. Add the Error Page service below the `catapp`
+4. Add the Error Page service below the `catapp`. We are using the [Traefik Custom Error Page service](https://github.com/guillaumebriday/traefik-custom-error-pages) check out the Repo for more details how to modify the Error pages.
 
   ```yaml
   # Error Page service
