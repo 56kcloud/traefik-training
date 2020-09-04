@@ -75,7 +75,6 @@ accessLog:
 4. Uncomment the `accessLog` line to enable Access Logging
 
 
-
 # Continue to the Next Operations
 
 ### Click here to continue -> [Operations Lab](https://github.com/56kcloud/traefik-training/blob/master/07-operations/traefik-operations.md)

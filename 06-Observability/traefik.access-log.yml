@@ -18,14 +18,14 @@ providers:
 # Access Logging
 ################################################################
 # enable Access logs
-# accessLog: {}
+accessLog: {}
 #Configuring Multiple Filters
-accessLog:
-  filters:    
-    statusCodes:
-      - "404"
-    retryAttempts: true
-    minDuration: "10ms"
+# accessLog:
+#   filters:    
+#     statusCodes:
+#       - "404"
+#     retryAttempts: true
+#     minDuration: "10ms"
 
 ################################################################
 # Traefik Logging -  DEBUG, PANIC, FATAL, ERROR, WARN, and INFO (DEFAULT is ERROR)
