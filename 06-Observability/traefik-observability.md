@@ -71,9 +71,24 @@ accessLog:
 ## 3. Enable Traefik Metrics
 1. Before we begin, lets cleanup the HTTP stack  `docker stack rm traefik` If you named you stack something else use your specified name. If you don't remember run `docker stack ls`
 2. Change to the `06-Observability` folder
-3. Open the `traefik.access-log.yml` file in your favorite editor and review the `Access Logging` section
-4. Uncomment the `accessLog` line to enable Access Logging
+3. Open the `traefik.metrics.yml` file in your favorite editor and review the `Prometheus Metrics` section. The buckets Prometheus metrics buckets have been enabled for the different time series in seconds.
 
+```yml
+metrics:
+  prometheus:
+    buckets:
+      - 0.1
+      - 0.3
+      - 1.2
+      - 5.0
+```
+4. Start Traefik with `Metrics` enabled `docker stack deploy -c docker-compose.metrics.yml traefik`
+
+**NOTE: This will take a couple minutes as Prometheus and Grafana need to download and start** 
+
+5. Login to Promethes [prometheus.localhost](http://prometheus.localhost)
+6. Login to Grafana [grafana.localhost](http://grafana.localhost)
+7. Grafana user is `admin` and password is `foobar`
 
 # Continue to the Next Operations
 
