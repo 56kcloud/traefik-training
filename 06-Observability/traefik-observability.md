@@ -87,8 +87,11 @@ metrics:
 **NOTE: This will take a couple minutes as Prometheus and Grafana need to download and start** 
 
 5. Login to Promethes [prometheus.localhost](http://prometheus.localhost)
-6. Login to Grafana [grafana.localhost](http://grafana.localhost)
-7. Grafana user is `admin` and password is `foobar`
+6. Review the available metrics imported into Prometheus by opening Graph and then click the dropdown and scroll to the bottom to find Traefik metrics
+7. Login to Grafana [grafana.localhost](http://grafana.localhost)
+8. Grafana user is `admin` and password is `foobar`
+9. Open the Dashboard `Traefik2`
+10. Visualize the Stats from Traefik
 
 # Continue to the Next Operations
 
