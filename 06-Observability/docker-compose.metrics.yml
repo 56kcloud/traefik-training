@@ -35,7 +35,6 @@ services:
       - '--web.console.templates=/usr/share/prometheus/consoles'
     deploy:
       labels:
-      #  - "traefik.enable=true"
        - "traefik.http.routers.prometheus.rule=Host(`prometheus.localhost`)"
        - "traefik.http.routers.prometheus.service=prometheus"
        - "traefik.http.routers.prometheus.entrypoints=web"
@@ -77,8 +76,8 @@ services:
      image: mikesir87/cats:1.0
      networks:
       - inbound
-     labels:
-       - "traefik.enable=true"
+     deploy:
+      labels:
        - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
        - "traefik.http.routers.catapp.service=catapp"
        - "traefik.http.routers.catapp.entrypoints=web"
@@ -95,13 +94,14 @@ services:
     image: guillaumebriday/traefik-custom-error-pages
     networks:
       - inbound
-    labels:
-          - "traefik.enable=true"
-          - "traefik.http.routers.error.rule=Host(`error.localhost`)"
-          - "traefik.http.routers.error.service=error"
-          - "traefik.http.services.error.loadbalancer.server.port=80"
-          - "traefik.http.routers.error.entrypoints=web"
-          - "traefik.docker.network=inbound"
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.error.rule=Host(`error.localhost`)"
+        - "traefik.http.routers.error.service=error"
+        - "traefik.http.services.error.loadbalancer.server.port=80"
+        - "traefik.http.routers.error.entrypoints=web"
+        - "traefik.docker.network=inbound"
 
 networks:
   traefik:
