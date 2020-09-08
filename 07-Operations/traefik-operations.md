@@ -33,9 +33,10 @@ healthcheck:
 
 6.  Start Traefik with Ping endpoint, Secure Mode ,and Docker `HEALTHCHECK ` -> `docker stack deploy -c docker-compose.cli.yml traefik`
 7.  Run `docker ps` notice the traefik container status now has Health status
-8.  Open the Ping endpoint [http://traefik.localhost/ping](http://traefik.localhost/ping)
-9.  Make an API request [http://traefik.localhost:8080/api/http/routers](http://traefik.localhost:8080/api/http/routers)
-10. The full list of API requests can be found here [https://docs.traefik.io/operations/api/](https://docs.traefik.io/operations/api/)
+8.  Open the Ping endpoint [http://your_domain_here/ping](http://traefik.localhost/ping)
+9.  Make an API request [http://your_domain_here:8080/api/http/routers](http://traefik.localhost:8080/api/http/routers)
+10. Open the Dashboard. Ensure to have the trailing "/" [http://your_domain_here/dashboard/](http://traefik.localhost/dashboard/)
+11. The full list of API requests can be found here [https://docs.traefik.io/operations/api/](https://docs.traefik.io/operations/api/)
 
 
 # Continue to the Next to Advance Tips
