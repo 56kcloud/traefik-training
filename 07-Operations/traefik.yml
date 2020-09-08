@@ -3,9 +3,12 @@
 ################################################################
 api:
   # Dashboard
-  #
-  #
+  # true = default
+  # 
   dashboard: true
+  #
+  # insecure: false is default
+  #
   insecure: true
 
 ################################################################
