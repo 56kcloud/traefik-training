@@ -17,7 +17,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
        # Mounts the Traefik static configuration inside the Traefik container
       - ./traefik.yml:/etc/traefik/traefik.yml
-      - ../05-HTTPS-TLS/letsencrypt:/letsencrypt
+      - ../04-HTTPS-TLS/letsencrypt:/letsencrypt
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]
       interval: 10s
@@ -29,7 +29,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.dashboard.rule=Host(`<YOUR_DOMAIN_HERE`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+        - "traefik.http.routers.dashboard.rule=Host(`<YOUR_DOMAIN_HERE>`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
         #- "traefik.http.routers.dashboard.rule=PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
         - "traefik.http.routers.dashboard.service=api@internal"
         - "traefik.http.routers.dashboard.entrypoints=websecure"
