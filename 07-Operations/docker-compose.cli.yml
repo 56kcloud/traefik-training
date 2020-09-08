@@ -17,12 +17,15 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
        # Mounts the Traefik static configuration inside the Traefik container
       - ./traefik.yml:/etc/traefik/traefik.yml
+      - ../05-HTTPS-TLS/letsencrypt:/letsencrypt
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]
       interval: 10s
       timeout: 2s
       retries: 3
       start_period: 5s
+    environment:
+      - "DO_AUTH_TOKEN=<Your Super Secret Digital Ocean Token Goes here>"
     deploy:
       labels:
         - "traefik.enable=true"
