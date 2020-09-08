@@ -9,7 +9,7 @@ api:
   #
   # insecure: false is default
   #
-  insecure: true
+  #insecure: false
 
 ################################################################
 # Enable Healthcheck
@@ -22,6 +22,7 @@ ping: {}
 providers:
   docker:
     exposedByDefault: false
+    swarmMode: true
 
 ################################################################
 # Traefik Logging -  DEBUG, PANIC, FATAL, ERROR, WARN, and INFO (DEFAULT is ERROR)
@@ -35,8 +36,10 @@ log:
 entryPoints:
   web:
     address: ":80"
-  # websecure:
-  #   address: ":443"
+  traefik:
+    address: ":8080"
+  websecure:
+    address: ":443"
 
 ################################################################
 # Challenege DNS
