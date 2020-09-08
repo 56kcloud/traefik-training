@@ -70,4 +70,4 @@
 
 # Continue to the Next Lab Middlewares
 
-### Click here to continue -> [Middlewares Lab](https://github.com/56kcloud/traefik-training/blob/master/05-middlewares/traefik-middlewares.md)
+### Click here to continue -> [Middlewares Lab](https://github.com/56kcloud/traefik-training/blob/master/05-Middlewares/traefik-middlewares.md)

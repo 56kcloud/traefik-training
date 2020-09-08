@@ -40,4 +40,4 @@ healthcheck:
 
 # Continue to the Next to Advance Tips
 
-### Click here to continue -> [Operations Lab](https://github.com/56kcloud/traefik-training/blob/master/07-operations/traefik-operations.md)
+### Click here to continue -> [Advanced Tips](https://github.com/56kcloud/traefik-training/blob/master/08-Advanced-Tips/traefik-advanced-tips.md)

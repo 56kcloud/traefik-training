@@ -120,4 +120,4 @@ traefik:$apr1$.zPbdVg8$LcHeyCZElH.JfxkxxlMPI.
 
 # Continue to the Next Observability
 
-### Click here to continue -> [Observability Lab](https://github.com/56kcloud/traefik-training/blob/master/06-observability/traefik-observability.md)
+### Click here to continue -> [Observability Lab](https://github.com/56kcloud/traefik-training/blob/master/06-Observability/traefik-observability.md)
