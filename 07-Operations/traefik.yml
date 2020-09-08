@@ -9,7 +9,7 @@ api:
   #
   # insecure: false is default
   #
-  #insecure: false
+  insecure: true
 
 ################################################################
 # Enable Healthcheck
