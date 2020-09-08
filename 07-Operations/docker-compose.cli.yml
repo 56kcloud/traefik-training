@@ -26,10 +26,12 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.dashboard.rule=Host(`traefik.localhost`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+        - "traefik.http.routers.dashboard.rule=Host(`<YOUR_DOMAIN_HERE`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
         #- "traefik.http.routers.dashboard.rule=PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
         - "traefik.http.routers.dashboard.service=api@internal"
-        - "traefik.http.routers.dashboard.entrypoints=web"
+        - "traefik.http.routers.dashboard.entrypoints=websecure"
+        - traefik.http.routers.dashboard.tls=true
+        - traefik.http.routers.dashboard.tls.certresolver=myresolver
         - "traefik.http.routers.dashboard.middlewares=auth"
         - "traefik.http.middlewares.auth.basicauth.users=traefik:$$apr1$$cIc2751d$$HejlZ4u/fLP1JrVO6sJO1/"
         - "traefik.http.services.dashboard.loadbalancer.server.port=8080"
