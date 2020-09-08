@@ -24,10 +24,10 @@ Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo
 ## 6. Traefik Observability
 * [Traefik Observability](./06-Observability/traefik-observability.md)
 
-<!-- 
-## 7. Traefik Operations
-* [Traefik Operations](./07-Traefik-Overview/traefik_configuration.md)
 
+## 7. Traefik Operations
+* [Traefik Operations](./07-Operations/traefik-operations.md)
+<!-- 
 ## 8. Traefik Advanced Tips
 * [Traefik Advanced Tips](./08-Traefik-Overview/traefik_configuration.md)
 
