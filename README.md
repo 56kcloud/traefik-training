@@ -29,7 +29,7 @@ Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo
 * [Traefik Operations](./07-Operations/traefik-operations.md)
 
 ## 8. Traefik Advanced Tips
-* [Traefik Advanced Tips](./08-Traefik-Overview/traefik-advanced-tips.md)
+* [Traefik Advanced Tips](./08-Advanced-Tips/traefik-advanced-tips.md)
 <!-- 
 ## 9. Traefik Resources
 * [Traefik Resources](./02-Traefik-Overview/traefik_configuration.md) -->
