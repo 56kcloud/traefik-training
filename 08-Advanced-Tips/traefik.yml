@@ -1,0 +1,59 @@
+################################################################
+# API and dashboard configuration
+################################################################
+api:
+  # Dashboard
+  # true = default
+  # 
+  dashboard: true
+  #
+  # insecure: false is default
+  #
+  insecure: false
+
+################################################################
+# Enable Traefik Pilot
+################################################################
+experimental:
+  pilot:
+    token: "<insert token here>"
+
+################################################################
+# Enable Healthcheck
+################################################################
+ping: {}
+
+################################################################
+# Docker configuration backend
+################################################################
+providers:
+  docker:
+    exposedByDefault: false
+    swarmMode: true
+
+################################################################
+# Traefik Logging -  DEBUG, PANIC, FATAL, ERROR, WARN, and INFO (DEFAULT is ERROR)
+################################################################
+log:
+  level: ERROR
+
+################################################################
+# Entrypoint
+################################################################
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+################################################################
+# Challenege DNS
+################################################################
+# certificatesResolvers:
+#   myresolver:
+#     acme:
+#       email: brian@56k.cloud
+#       storage: acme.json
+#       dnsChallenge:
+#         provider: digitalocean
+#         delayBeforeCheck: 0
