@@ -38,5 +38,5 @@ git clone https://github.com/56kcloud/traefik-training.git
 
 You can find the Traefik Training GitHub Repo here - https://github.com/56kcloud/traefik-training
 
-## Questions
+## Questions
 If you have a question or need help, be sure to ask a question in the comments or reach out to our support team.
