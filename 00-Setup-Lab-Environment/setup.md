@@ -40,3 +40,7 @@ You can find the Traefik Training GitHub Repo here - https://github.com/56kcloud
 
 ## Questions
 If you have a question or need help, be sure to ask a question in the comments or reach out to our support team.
+
+# Continue to the Traefik Overview Lab
+
+### Click here to continue -> [Configure Traefik](https://github.com/56kcloud/traefik-training/blob/master/01-Traefik-Overview/traefik_overview.md)
