@@ -1,8 +1,8 @@
-# Getting Started with Traefik
+# Setup Lab Environment
 
 <img src="../img/Traefik_training.png" alt="Traefik Logo" height="350"> 
 
-## LAB Prerequisites
+## LAB Prerequisites
 
 1. Install Docker for Desktop Windows or Mac.
 
