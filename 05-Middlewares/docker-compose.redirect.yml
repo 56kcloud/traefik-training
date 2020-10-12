@@ -30,7 +30,7 @@ services:
   # Routers
        - "traefik.http.routers.catapp.rule=Host(`<your-domain-here>`)"
        - "traefik.http.routers.catapp.entrypoints=web"
-       - "traefik.http.routers.catapp.middlewares=redirect"
+       - "traefik.http.routers.catapp.middlewares=test-redirectscheme"
        - "traefik.http.routers.catapp-secure.rule=Host(`<your-domain-here>`)"
        - "traefik.http.routers.catapp-secure.entrypoints=websecure"
        - "traefik.http.routers.catapp-secure.tls.certresolver=myresolver"
