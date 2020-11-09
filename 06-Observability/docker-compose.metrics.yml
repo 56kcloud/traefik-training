@@ -22,7 +22,7 @@ services:
       - ./traefik.metrics.yml:/etc/traefik/traefik.yml
 
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:v2.22.1
     networks:
       - inbound
     volumes:
@@ -47,7 +47,7 @@ services:
         condition: on-failure
   
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:7.3.1
     networks:
       - inbound
     depends_on:
