@@ -52,7 +52,7 @@ X-Real-Ip: 172.20.0.1
 
 ##  3. Scale the Whoami service to 3x
 1. Open you Terminal window and change to the `01-Traefik-Overview` folder
-2. Let's scale the `whoami` service to 3x instances by typing `docker-compose scale whoami=3`
+2. Let's scale the `whoami` service to 3x instances by typing `docker-compose up -d --scale whoami=3`
 3. Open a browser tab and paste `whoami.docker.localhost`  or from a terminal window `curl -H Host:whoami.docker.localhost http://127.0.0.1` and you should see the 3rd IP address update based on which service is responding.
 
 ##  4. Get to know the Traefik Dashboard
