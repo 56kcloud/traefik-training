@@ -12,7 +12,7 @@ services:
       - "--providers.docker" 
       - "--log.level=INFO"
     ports:
-      # Exposes port 80 for incomming web requests
+      # Exposes port 80 for incoming web requests
       - "80:80"
       # The Web UI port http://0.0.0.0:8080 (enabled by --api.insecure=true)
       - "8080:8080"

@@ -7,7 +7,7 @@ Welcome to [56K.Cloud](https://www.56k.cloud) Traefik Training & Labs. This repo
 ## Traefik Training Course
 
 ## 00. Setup Lab Environment
-* [Setup Lab Enviornment](./00-Setup-Lab-Environment/setup.md)
+* [Setup Lab Environment](./00-Setup-Lab-Environment/setup.md)
 
 ## 1. Getting Started with Traefik
 * [Getting Started with Traefik](./01-Traefik-Overview/traefik_overview.md)
