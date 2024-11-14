@@ -2,7 +2,7 @@ Thank you so much for your interest in contributing to [56K.Cloud Training](http
 
 Just a few quick things to be aware of before you get started.
 
-We welcome issues and pull requests for either adding a new tutorial, or fixing a problem with an existing tutorial. This is a repository for tutorials that uses the native componentes of Docker & Kubernetes based projects as much as possible. So if there’s a Docker or Kubernetes tool for what you’re describing, please use that.
+We welcome issues and pull requests for either adding a new tutorial, or fixing a problem with an existing tutorial. This is a repository for tutorials that uses the native components of Docker & Kubernetes based projects as much as possible. So if there’s a Docker or Kubernetes tool for what you’re describing, please use that.
 
 Anything you contribute will be under an Apache license. Anything posted here may be forked by anyone on GitHub.
 

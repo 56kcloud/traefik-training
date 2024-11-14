@@ -29,7 +29,7 @@ entryPoints:
     address: ":443"
 
 ################################################################
-# Challenege DNS
+# Challenge DNS
 ################################################################
 # certificatesResolvers:
 #   myresolver:
